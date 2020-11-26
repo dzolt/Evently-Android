@@ -20,6 +20,7 @@ abstract class EventlyDatabase: RoomDatabase() {
                 .build()
         }
 
+        //to musi być wywołane przez pierwszą odpalaną aktywność
         fun initialize(appContext: Context) {
             applicationContext = appContext
         }
