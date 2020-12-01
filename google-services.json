@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "977238950043",
+    "firebase_url": "https://meetin5.firebaseio.com",
+    "project_id": "meetin5",
+    "storage_bucket": "meetin5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977238950043:android:d5576d770c8be296b5863e",
+        "android_client_info": {
+          "package_name": "com.apusart.evently"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977238950043-t4u666aqkbtfs36tvtmedaf5bq5i0hkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS5RAqDyDY5AEd4CCvxllp4XP88DZVnsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977238950043-t4u666aqkbtfs36tvtmedaf5bq5i0hkn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "977238950043-rps01k0kvgkpmpav71uusk01562bbms1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "apusart.Evently-IOS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
