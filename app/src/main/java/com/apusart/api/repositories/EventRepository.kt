@@ -8,4 +8,5 @@ class EventRepository @Inject constructor(
     private val eventLocalService: EventLocalService,
     private val eventRemoteDataService: EventRemoteService
 ) {
+
 }

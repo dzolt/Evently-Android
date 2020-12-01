@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="206dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/event_list_item_image"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        tools:src="@drawable/party_image_template1"
+        android:scaleType="centerCrop"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="20dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp">
+            <TextView
+                android:id="@+id/event_list_item_event_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CaptionRoboto12PtBlack"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Today at 20:00"/>
+            <TextView
+                android:id="@+id/event_list_item_event_title"
+                style="@style/TitleRoboto20Pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-light"
+                app:layout_constraintTop_toBottomOf="@id/event_list_item_event_date"
+                tools:layout_editor_absoluteX="10dp"
+                tools:text="Event title" />
+            <TextView
+                android:id="@+id/event_list_item_event_host"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/event_list_item_event_title"
+                style="@style/Roboto14Pt"
+                tools:text="by host"/>
+            <TextView
+                android:id="@+id/event_list_item_event_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CaptionRoboto12Pt"
+                app:layout_constraintTop_toBottomOf="@id/event_list_item_event_host"
+                android:layout_marginTop="3dp"
+                tools:text="Location at location, Location"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
