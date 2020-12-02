@@ -9,7 +9,7 @@
     </style>
     <style name="TitleRoboto20Pt">
         <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black</item>
     </style>

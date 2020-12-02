@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Evently-Android</string>
+    <string name="additional_participants">+%1$d</string>
 </resources>
