@@ -15,6 +15,9 @@
     <color name="pale_grey_two">#F7F7FA</color>
     <color name="pale_grey_three">#DFE0E6</color>
 
+    <color name="error_text_color">#B30000</color>
+    <color name="error_background_color">#A82929</color>
+
     <color name="primary_900">#14213d</color>
     <color name="primary_800">#1c3155</color>
     <color name="primary_700">#213a62</color>

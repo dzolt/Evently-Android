@@ -3,20 +3,23 @@
     package="com.apusart.evently_android">
 
     <application
+        android:name="com.apusart.EventlyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".guest.initial_activity.InitialActivity" android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".guest.login_activity.LoginActivity" android:theme="@style/LoginTheme" android:noHistory="true"/>
+        <activity android:name=".guest.register_activity.RegisterActivity" android:theme="@style/LoginTheme" android:noHistory="true"/>
+        <activity android:name=".logged.main.MainLoggedActivity"/>
     </application>
 
 </manifest>

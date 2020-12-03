@@ -1,7 +1,11 @@
 package com.apusart
 
 import android.app.Application
+import android.content.Context
 import com.apusart.di.AppModule
+import com.apusart.evently_android.guest.initial_activity.InitialActivity
+import com.apusart.evently_android.guest.login_activity.LoginActivity
+import com.apusart.evently_android.guest.register_activity.RegisterActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -10,6 +14,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface ApplicationComponent {
+    fun inject(activity: InitialActivity)
+    fun inject(activity: LoginActivity)
+    fun inject(activity: RegisterActivity)
 
     @Component.Builder
     interface Builder {
@@ -31,3 +38,5 @@ class EventlyApplication: Application() {
             .build()
     }
 }
+
+val Context.appComponent get() = (applicationContext as EventlyApplication).appComponent

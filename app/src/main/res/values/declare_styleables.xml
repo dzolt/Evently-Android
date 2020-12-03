@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressButton">
+        <attr name="button_name" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="InfoModal">
+        <attr name="modal_background" format="reference" />
+        <attr name="modal_title" format="string" />
+        <attr name="modal_information" format="string" />
+        <attr name="modal_text_color" format="color" />
+        <attr name="modal_icon" format="reference" />
+    </declare-styleable>
+</resources>
