@@ -1,4 +1,7 @@
 <resources>
+    <string name="facebook_app_id">1097356564056954</string>
+    <string name="fb_login_protocol_scheme">fb1097356564056954</string>
+
     <string name="app_name">Meet in 5</string>
     <string name="additional_participants">+%1$d</string>
     <string name="log_in">Log In</string>
@@ -10,5 +13,11 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="have_account">Already have an account?</string>
     <string name="register">Register</string>
-
+    <string name="continue_with_fb">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="events">Events</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="calendar">Calendar</string>
+    <string name="profile">Profile</string>
 </resources>

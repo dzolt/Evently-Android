@@ -19,7 +19,19 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
     fun register() {
         viewModelScope.launch {
             try {
+
+                if (emailText.value == null || emailText.value.equals("")) {
+//                    user.value = Resource.error("Email cannot be null")
+                    return@launch
+                }
+
+                if (passwordText.value == null || passwordText.value.equals("")) {
+//                    user.value = Resource.error("Password cannot be null")
+                    return@launch
+                }
+
                 user.value = Resource.pending()
+
                 Firebase.auth.createUserWithEmailAndPassword(emailText.value!!, passwordText.value!!)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {

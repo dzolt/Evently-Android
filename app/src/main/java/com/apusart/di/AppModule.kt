@@ -1,8 +1,14 @@
 package com.apusart.di
 
+import android.app.Application
+import android.content.Context
 import com.apusart.api.local_data_source.db.EventlyDatabase
 import com.apusart.api.remote_data_source.IEventlyService
+import com.apusart.evently_android.R
 import com.apusart.tools.Defaults
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

@@ -8,6 +8,8 @@ import com.apusart.api.local_data_source.db.EventlyDatabase
 import com.apusart.appComponent
 import com.apusart.evently_android.guest.login_activity.LoginActivity
 import com.apusart.evently_android.logged.main.MainLoggedActivity
+import com.apusart.tools.LoginTools
+import com.facebook.FacebookSdk
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import javax.inject.Inject
@@ -18,6 +20,8 @@ class InitialActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventlyDatabase.initialize(applicationContext)
+        LoginTools.context = applicationContext
+
         appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
@@ -27,10 +31,9 @@ class InitialActivity: AppCompatActivity() {
                     .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
 
             } else {
-//                startActivity(Intent(applicationContext, MainLoggedActivity::class.java)
-//                    .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
-                startActivity(Intent(applicationContext, LoginActivity::class.java)
+                startActivity(Intent(applicationContext, MainLoggedActivity::class.java)
                     .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
+
             }
         })
     }
@@ -38,5 +41,6 @@ class InitialActivity: AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Firebase.initialize(applicationContext)
+
     }
 }

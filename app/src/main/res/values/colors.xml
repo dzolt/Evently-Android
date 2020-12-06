@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/primary_900</color>
     <color name="colorPrimaryDark">#0B1220</color>
-    <color name="colorAccent">#3d3014</color>
+    <color name="colorAccent">#FCA311</color>
 
 <!--    kolory przykładowe-->
     <color name="cool_grey">#A2A4AD</color>
