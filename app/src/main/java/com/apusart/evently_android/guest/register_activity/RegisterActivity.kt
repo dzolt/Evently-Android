@@ -3,6 +3,7 @@ package com.apusart.evently_android.guest.register_activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,7 @@ import com.apusart.evently_android.R
 import com.apusart.evently_android.databinding.RegisterBinding
 import com.apusart.evently_android.guest.login_activity.LoginActivity
 import com.apusart.evently_android.logged.main.MainLoggedActivity
+import com.apusart.tools.AppViewModelFactory
 import com.apusart.tools.Tools
 import kotlinx.android.synthetic.main.information_modal.view.*
 import kotlinx.android.synthetic.main.register.*
@@ -21,8 +23,7 @@ import javax.inject.Inject
 
 class RegisterActivity: AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: RegisterViewModel
+    private val viewModel: RegisterActivityViewModel by viewModels { AppViewModelFactory(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent.inject(this)

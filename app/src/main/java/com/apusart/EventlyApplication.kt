@@ -6,6 +6,7 @@ import com.apusart.di.AppModule
 import com.apusart.evently_android.guest.initial_activity.InitialActivity
 import com.apusart.evently_android.guest.login_activity.LoginActivity
 import com.apusart.evently_android.guest.register_activity.RegisterActivity
+import com.apusart.evently_android.logged.profile.ProfileFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,6 +18,7 @@ interface ApplicationComponent {
     fun inject(activity: InitialActivity)
     fun inject(activity: LoginActivity)
     fun inject(activity: RegisterActivity)
+    fun inject(fragment: ProfileFragment)
 
     @Component.Builder
     interface Builder {

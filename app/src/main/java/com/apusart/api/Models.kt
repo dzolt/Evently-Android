@@ -1,8 +1,10 @@
 package com.apusart.api
 
+import android.content.Intent
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.apusart.evently_android.guest.initial_activity.InitialActivity
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     enum class Status {
@@ -33,3 +35,22 @@ data class Event(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "title") val title: String
 )
+
+fun <T> handleResource(
+    res: Resource<T>,
+    onSuccess: ((data: T?) -> Unit) = { _ -> },
+    onPending: ((data: T?) -> Unit) = { _ -> },
+    onError: ((message: String?, data: T?) -> Unit) = { _, _ -> }
+) {
+    when(res.status) {
+        Resource.Status.SUCCESS -> {
+            onSuccess(res.data)
+        }
+        Resource.Status.PENDING -> {
+            onPending(res.data)
+        }
+        Resource.Status.ERROR -> {
+            onError(res.message, res.data)
+        }
+    }
+}

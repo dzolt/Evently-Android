@@ -71,7 +71,6 @@ class InfoModal(context: Context, attributeSet: AttributeSet): LinearLayout(cont
             val textColor = getColor(R.styleable.InfoModal_modal_text_color, ResourcesCompat.getColor(resources, R.color.white, null))
             val icon = getDrawable(R.styleable.InfoModal_modal_icon)
 
-
             //set content
             modalTitle = title
             modalInformation = info

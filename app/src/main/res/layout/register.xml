@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.apusart.evently_android.guest.register_activity.RegisterViewModel" />
+            type="com.apusart.evently_android.guest.register_activity.RegisterActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

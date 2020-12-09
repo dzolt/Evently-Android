@@ -11,4 +11,12 @@
         <attr name="modal_text_color" format="color" />
         <attr name="modal_icon" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="ProfileButton">
+        <attr name="profile_button_name" format="string"/>
+        <attr name="profile_button_underline_color" format="color"/>
+        <attr name="profile_button_icon" format="reference"/>
+        <attr name="profile_button_icon_tint" format="color"/>
+        <attr name="profile_button_is_underline_visible" format="boolean"/>
+    </declare-styleable>
 </resources>

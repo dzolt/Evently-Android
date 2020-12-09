@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.telecom.Call
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,8 @@ import com.apusart.evently_android.R
 import com.apusart.evently_android.databinding.LoginBinding
 import com.apusart.evently_android.guest.register_activity.RegisterActivity
 import com.apusart.evently_android.logged.main.MainLoggedActivity
+import com.apusart.tools.AppViewModelFactory
+import com.apusart.tools.Codes
 import com.apusart.tools.LoginTools
 import com.apusart.tools.Tools
 import com.facebook.CallbackManager
@@ -35,16 +38,12 @@ import kotlinx.android.synthetic.main.register.*
 import javax.inject.Inject
 
 class LoginActivity: AppCompatActivity() {
-    @Inject
-    lateinit var viewModel: LoginActivityViewModel
 
-    private val RC_SIGN_IN = 123
-
+    private val viewModel: LoginActivityViewModel by viewModels { AppViewModelFactory(this) }
     lateinit var callbackManager: CallbackManager
 
     private lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
-        appComponent.inject(this)
         FacebookSdk.sdkInitialize(this)
         super.onCreate(savedInstanceState)
 
@@ -113,27 +112,17 @@ class LoginActivity: AppCompatActivity() {
 
     private fun googleSignIn() {
         val intent = googleSignInClient.signInIntent
-        startActivityForResult(intent, RC_SIGN_IN)
+        startActivityForResult(intent, Codes.RC_SIGN_IN)
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
-        val credentials = GoogleAuthProvider.getCredential(idToken, null)
-        Firebase.auth.signInWithCredential(credentials)
-            .addOnCompleteListener {
-                if(it.isSuccessful) {
-                    startActivity(Intent(this, MainLoggedActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-                } else {
-                    login_error_modal.isActive = true
-                    login_error_modal.modalInformation = it.exception.toString()
-                }
-            }
+       viewModel.googleLogIn(idToken)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         callbackManager.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == Codes.RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)

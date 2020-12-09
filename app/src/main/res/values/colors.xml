@@ -29,4 +29,6 @@
     <color name="primary_100">#bdc6d4</color>
     <color name="primary_50">#e5e8ed</color>
 
+    <color name="transparent">#9000</color>
+    <color name="defaultBackgroundColor">#FAFAFA</color>
 </resources>

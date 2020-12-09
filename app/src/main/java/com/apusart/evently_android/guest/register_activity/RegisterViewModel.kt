@@ -1,17 +1,21 @@
 package com.apusart.evently_android.guest.register_activity
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apusart.api.Resource
+import com.apusart.api.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import javax.inject.Inject
 
-class RegisterViewModel @Inject constructor(): ViewModel() {
+class RegisterActivityViewModel(private val context: Context): ViewModel() {
+    private val userRepository = UserRepository(context)
     val emailText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
     val user = MutableLiveData<Resource<FirebaseUser>>()
@@ -19,31 +23,18 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
     fun register() {
         viewModelScope.launch {
             try {
-
                 if (emailText.value == null || emailText.value.equals("")) {
-//                    user.value = Resource.error("Email cannot be null")
                     return@launch
                 }
 
                 if (passwordText.value == null || passwordText.value.equals("")) {
-//                    user.value = Resource.error("Password cannot be null")
                     return@launch
                 }
-
                 user.value = Resource.pending()
-
-                Firebase.auth.createUserWithEmailAndPassword(emailText.value!!, passwordText.value!!)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            user.value = Resource.success(Firebase.auth.currentUser!!)
-                        } else {
-                            user.value = Resource.error(it.exception?.message)
-                        }
-                    }
+                user.value = userRepository.register(emailText.value!!, passwordText.value!!)
             } catch (e: Exception) {
                 user.value = Resource.error(e.message)
             }
         }
     }
-
 }
