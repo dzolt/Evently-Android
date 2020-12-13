@@ -68,7 +68,6 @@ class MainLoggedActivity: AppCompatActivity(R.layout.main_logged) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         main_logged_navigation_view.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.events_page -> {

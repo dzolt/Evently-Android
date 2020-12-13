@@ -40,13 +40,12 @@ class ProfileFragmentViewModel constructor(context: Context): ViewModel() {
 
     fun uploadImageToFirebase(uri: Uri) {
         viewModelScope.launch {
-
             try {
                 val id = Firebase.auth.currentUser?.uid
                 val pictureName = "profilePicture"
                 if(id != null) {
                     userRepository.uploadProfilePhoto(uri, id, pictureName)
-                    profilePicture.value = userRepository.getDownloadLink(id,"users/${id}/${pictureName}.jpg")
+                    profilePicture.value = userRepository.getDownloadLink("users/${id}/${pictureName}.jpg")
                 }
             } catch (e: Exception) {
                 profilePicture.value = Resource.error(e.message)

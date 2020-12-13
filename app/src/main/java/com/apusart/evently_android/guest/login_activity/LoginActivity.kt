@@ -1,15 +1,20 @@
 package com.apusart.evently_android.guest.login_activity
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telecom.Call
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.apusart.api.Resource
+import com.apusart.api.handleResource
 import com.apusart.appComponent
 import com.apusart.evently_android.R
 import com.apusart.evently_android.databinding.LoginBinding
@@ -43,6 +48,7 @@ class LoginActivity: AppCompatActivity() {
     lateinit var callbackManager: CallbackManager
 
     private lateinit var googleSignInClient: GoogleSignInClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         FacebookSdk.sdkInitialize(this)
         super.onCreate(savedInstanceState)
@@ -60,31 +66,24 @@ class LoginActivity: AppCompatActivity() {
                 .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
         }
 
-        viewModel.user.observe(this, {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    startActivity(
-                        Intent(this, MainLoggedActivity::class.java)
-                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    )
-                }
-
-                Resource.Status.PENDING -> {
-                    login_email_login_button.transitionToEnd()
-                }
-
-                Resource.Status.ERROR -> {
-                    login_email_login_button.transitionToStart()
-                    login_error_modal.isActive = true
-                    login_error_modal.modalInformation = it.message.toString()
-
-                }
-            }
+        viewModel.user.observe(this, { res ->
+            handleResource(res, {
+                startActivity(
+                    Intent(this, MainLoggedActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                )
+            }, {
+                login_email_login_button.transitionToEnd()
+            }, { msg, _ ->
+                login_email_login_button.transitionToStart()
+                login_error_modal.modalInformation = msg
+                login_error_modal.isActive = true
+            })
         })
 
         googleSignInClient = GoogleSignIn.getClient(this, LoginTools.gso)
-
         callbackManager = CallbackManager.Factory.create()
+
         login_email_facebook_button.setReadPermissions("email", "public_profile")
         login_email_facebook_button.registerCallback(callbackManager, object: FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
@@ -98,7 +97,6 @@ class LoginActivity: AppCompatActivity() {
             override fun onError(error: FacebookException?) {
                 Log.v("TAG", "ERROR")
             }
-
         })
 
         login_email_google_button_container.setOnClickListener {

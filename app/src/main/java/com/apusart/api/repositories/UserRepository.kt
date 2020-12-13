@@ -3,6 +3,7 @@ package com.apusart.api.repositories
 import android.content.Context
 import android.net.Uri
 import com.apusart.api.Resource
+import com.apusart.api.remote_data_source.services.UserService
 import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,8 +24,7 @@ class UserRepository(private val context: Context) {
         .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .build()
     private val gsc = GoogleSignIn.getClient(context, gto)
-    private val db = Firebase.firestore
-    private val storage = FirebaseStorage.getInstance()
+    private val userService = UserService()
 
     suspend fun facebookLogIn(token: AccessToken): Resource<FirebaseUser> {
         val credential = FacebookAuthProvider.getCredential(token.token)
@@ -64,17 +64,15 @@ class UserRepository(private val context: Context) {
         return Resource.success(true)
     }
 
-    private fun getReference(path: String): StorageReference {
-        return storage.reference.child(path)
-    }
+
 
     suspend fun uploadProfilePhoto(uri: Uri, id: String, pictureName: String) {
-        val file = getReference("users/${id}/${pictureName}.jpg")
+        val file = userService.getReference("users/${id}/${pictureName}.jpg")
         file.putFile(uri).await()
     }
 
-    suspend fun getDownloadLink(id: String, path: String): Resource<Uri> {
-        val file = getReference(path)
+    suspend fun getDownloadLink(path: String): Resource<Uri> {
+        val file = userService.getReference(path)
         return Resource.success(file.downloadUrl.await())
     }
 }

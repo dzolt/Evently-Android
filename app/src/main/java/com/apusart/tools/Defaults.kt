@@ -20,6 +20,14 @@ object Defaults {
 }
 
 object Tools {
+    fun hideKeyboard(fragment: Fragment?) {
+        val view = fragment?.requireActivity()?.currentFocus
+        view?.let { v ->
+            val imm = fragment.requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(v.windowToken, 0)
+        }
+    }
+
     fun hideKeyboard(activity: Activity?) {
         val view = activity?.currentFocus
         view?.let { v ->

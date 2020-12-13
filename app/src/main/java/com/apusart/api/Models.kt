@@ -5,6 +5,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.apusart.evently_android.guest.initial_activity.InitialActivity
+import java.lang.Error
+import java.util.*
+
+data class User(
+    val id: Int,
+    val full_name: String,
+    val picture_path: String?,
+    val created_at: Date?
+)
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     enum class Status {

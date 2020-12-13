@@ -8,6 +8,7 @@ import com.apusart.evently_android.R
 import com.apusart.tools.Defaults
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.storage.FirebaseStorage
 import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
@@ -21,6 +22,9 @@ import javax.inject.Singleton
 class AppModule {
 
     @Provides
+    fun provideStorage(): FirebaseStorage = FirebaseStorage.getInstance()
+
+    @Provides
     fun provideGson(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
@@ -30,7 +34,6 @@ class AppModule {
             level =  HttpLoggingInterceptor.Level.BODY
         }
     }
-
 
     @Provides
     fun provideClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =

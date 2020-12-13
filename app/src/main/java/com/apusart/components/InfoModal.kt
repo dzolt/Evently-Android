@@ -40,8 +40,13 @@ class InfoModal(context: Context, attributeSet: AttributeSet): LinearLayout(cont
             view.modal_icon.setImageDrawable(value)
         }
 
-    var modalInformation: CharSequence = ""
+    var modalInformation: String? = ""
         set(value) {
+            if(value == null) {
+                field = ""
+                return
+            }
+
             field = value
             view.modal_information.text = value
         }
@@ -73,7 +78,7 @@ class InfoModal(context: Context, attributeSet: AttributeSet): LinearLayout(cont
 
             //set content
             modalTitle = title
-            modalInformation = info
+            modalInformation = info.toString()
             modalIcon = icon
 
             //set colors

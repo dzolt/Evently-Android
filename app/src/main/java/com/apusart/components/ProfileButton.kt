@@ -22,7 +22,6 @@ class ProfileButton(context: Context, attributeSet: AttributeSet): ConstraintLay
     private val icon: ImageView
 
     init {
-
         context.theme.obtainStyledAttributes(attributeSet,
             R.styleable.ProfileButton,
             0,0).apply {

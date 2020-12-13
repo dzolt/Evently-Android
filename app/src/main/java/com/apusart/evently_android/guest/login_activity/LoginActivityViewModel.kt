@@ -59,8 +59,4 @@ class LoginActivityViewModel(private val context: Context): ViewModel() {
             }
         }
     }
-
-    suspend fun logout() {
-
-    }
 }
