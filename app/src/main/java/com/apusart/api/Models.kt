@@ -8,11 +8,12 @@ import com.apusart.evently_android.guest.initial_activity.InitialActivity
 import java.lang.Error
 import java.util.*
 
-data class User(
-    val id: Int,
+data class User (
+    val id: String,
     val full_name: String,
     val picture_path: String?,
-    val created_at: Date?
+    val created_at: Date?,
+    val friends: List<String>?
 )
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {

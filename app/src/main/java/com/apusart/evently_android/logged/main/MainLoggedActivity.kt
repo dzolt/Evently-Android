@@ -62,7 +62,6 @@ class MainLoggedActivity: AppCompatActivity(R.layout.main_logged) {
                 super.onBackPressed()
             }
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

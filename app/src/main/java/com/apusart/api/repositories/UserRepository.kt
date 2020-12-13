@@ -12,11 +12,7 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.auth.User
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.tasks.await
 
 class UserRepository(private val context: Context) {
@@ -63,8 +59,6 @@ class UserRepository(private val context: Context) {
         LoginManager.getInstance().logOut()
         return Resource.success(true)
     }
-
-
 
     suspend fun uploadProfilePhoto(uri: Uri, id: String, pictureName: String) {
         val file = userService.getReference("users/${id}/${pictureName}.jpg")

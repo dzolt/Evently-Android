@@ -5,10 +5,12 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.apusart.api.Resource
+import com.apusart.api.User
 import com.apusart.evently_android.MainActivity
 import com.apusart.evently_android.R
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseUser
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.CancellationException
