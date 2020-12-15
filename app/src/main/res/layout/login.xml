@@ -48,48 +48,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent">
-                <LinearLayout
+                <com.apusart.components.MainInput
                     android:id="@+id/login_email_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email_address"
-                        style="@style/Roboto14Pt"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Roboto14Pt"
-                        android:textSize="16sp"
-                        android:imeOptions="actionNext"
-                        android:inputType="textAutoComplete"
-                        android:text="@={viewModel.emailText}"/>
-                </LinearLayout>
-                <LinearLayout
+                    app:main_input_input_title="@string/email_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="textAutoComplete"
+                    app:main_input_input="@={viewModel.emailText}"/>
+
+                <com.apusart.components.MainInput
                     android:id="@+id/login_password_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/login_email_container"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/password"
-                        style="@style/Roboto14Pt"/>
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Roboto14Pt"
-                        android:textSize="16sp"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:text="@={viewModel.passwordText}"/>
-                </LinearLayout>
+                    app:main_input_input_title="@string/password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    app:main_input_input="@={viewModel.passwordText}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/login_forgot_password"

@@ -28,4 +28,10 @@
     <string name="abort">Cancel</string>
     <string name="wanna_sign_out">Do you really want to sign out?</string>
     <string name="change_profile_picture">Change profile picture</string>
+    <string name="_public">Public</string>
+    <string name="_private">Private</string>
+    <string name="_friends">Friends</string>
+    <string name="friends_visibility_about">Visible only for friends.</string>
+    <string name="private_visibility_about">Visible only for invited people.</string>
+    <string name="public_visibility_about">Visible for everyone.</string>
 </resources>

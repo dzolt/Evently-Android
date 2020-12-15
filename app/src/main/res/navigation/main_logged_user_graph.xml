@@ -16,4 +16,16 @@
         android:id="@+id/profileFragment"
         android:name="com.apusart.evently_android.logged.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <activity
+        android:id="@+id/createEventActivity"
+        android:name="com.apusart.evently_android.logged.create_event.CreateEventActivity"
+        android:label="CreateEventActivity" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.apusart.evently_android.logged.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/pickEventVisibility"
+        android:name="com.apusart.evently_android.logged.create_event.PickEventVisibilityFragment"
+        android:label="PickEventVisibility" />
 </navigation>
