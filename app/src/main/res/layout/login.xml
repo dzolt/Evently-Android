@@ -55,7 +55,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:main_input_input_title="@string/email_address"
                     android:imeOptions="actionNext"
-                    android:inputType="textAutoComplete"
+                    android:inputType="textEmailAddress"
                     app:main_input_input="@={viewModel.emailText}"/>
 
                 <com.apusart.components.MainInput

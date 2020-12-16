@@ -30,6 +30,8 @@
         <attr name="main_input_input_title" format="string" />
         <attr name="android:imeOptions" format="flags" />
         <attr name="android:inputType" format="flags" />
+        <attr name="edit_text_height" format="dimension" />
+        <attr name="android:gravity" format="flags" />
     </declare-styleable>
 
     <declare-styleable name="HeaderView">

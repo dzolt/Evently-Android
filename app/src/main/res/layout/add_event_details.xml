@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.apusart.evently_android.logged.create_event.CreateEventViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="20dp">
+        <com.apusart.components.MainInput
+            android:id="@+id/add_event_details_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:main_input_input_title="@string/event_name"
+            app:main_input_input="@={viewModel.eventName}"
+            />
+        <com.apusart.components.MainInput
+            android:id="@+id/add_event_details_event_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_event_details_event_name"
+            android:layout_marginTop="10dp"
+            app:main_input_input_title="@string/description"
+            app:edit_text_height="150dp"
+            android:gravity="bottom"
+            app:main_input_input="@={viewModel.eventDescription}"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

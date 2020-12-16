@@ -53,16 +53,16 @@ class ProgressView(context: Context, attributeSet: AttributeSet) :
 
     var current = -1
         set(value) {
-            if (value == field || value == -1) {
-                field = value
+            val newValue = value + 1
+            if (newValue == field || value == -1) {
+                field = newValue
                 return
             }
 
+            field = newValue
             progressPoints.forEachIndexed { index, progressPoint ->
-                progressPoint.isActive = index < value
+                progressPoint.isActive = index < field
             }
-
-            field = value
         }
 
     init {

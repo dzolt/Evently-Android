@@ -56,4 +56,12 @@ class HeaderView(context: Context, attributeSet: AttributeSet): LinearLayout(con
 
         addView(view)
     }
+
+    fun setOnLeadingIconClickListener(l:(View) -> Unit) {
+        view.header_leading_icon.setOnClickListener(l)
+    }
+
+    fun setOnTrailingIconClickListener(l:(View) -> Unit) {
+        view.header_trailing_icon.setOnClickListener(l)
+    }
 }

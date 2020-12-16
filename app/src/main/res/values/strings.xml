@@ -34,4 +34,8 @@
     <string name="friends_visibility_about">Visible only for friends.</string>
     <string name="private_visibility_about">Visible only for invited people.</string>
     <string name="public_visibility_about">Visible for everyone.</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="event_name">Event name</string>
+    <string name="place">Place</string>
 </resources>

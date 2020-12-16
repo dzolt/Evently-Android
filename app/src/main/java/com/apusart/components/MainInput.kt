@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.core.widget.doOnTextChanged
@@ -27,10 +28,16 @@ class MainInput(context: Context, attributeSet: AttributeSet): LinearLayout(cont
             val title = getText(R.styleable.MainInput_main_input_input_title)
             val imeOptions = getInt(R.styleable.MainInput_android_imeOptions, 0)
             val inputType = getInt(R.styleable.MainInput_android_inputType, 0)
+            val editTextHeight = getDimension(R.styleable.MainInput_edit_text_height, -4F)
+            val gravity = getInt(R.styleable.MainInput_android_gravity, 0)
+
+            if (editTextHeight != -4F)
+                view.main_input_edit_text.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, editTextHeight.toInt())
 
             view.main_input_title.text = title
             view.main_input_edit_text.imeOptions = imeOptions
             view.main_input_edit_text.inputType = inputType
+            view.main_input_edit_text.gravity = gravity
 
         }
 
