@@ -9,14 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_margin="20dp">
+        android:padding="20dp">
         <com.apusart.components.MainInput
             android:id="@+id/add_event_details_event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:main_input_input_title="@string/date"
-            app:main_input_input="@={viewModel.test1}"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            app:main_input_input="@={viewModel.date}"
             />
         <com.apusart.components.MainInput
             android:id="@+id/add_event_details_event_description"
@@ -25,7 +27,9 @@
             app:layout_constraintTop_toBottomOf="@id/add_event_details_event_name"
             android:layout_marginTop="10dp"
             app:main_input_input_title="@string/place"
-            app:main_input_input="@={viewModel.test2}"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            app:main_input_input="@={viewModel.place}"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

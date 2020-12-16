@@ -14,7 +14,15 @@ import com.apusart.evently_android.R
 class ProgressPoint(context: Context) : View(context) {
     private val activePaint = Paint()
     private val passivePaint = Paint()
+    private val lastPaint = Paint()
     var isActive = false
+        set(value) {
+            if (value == field)
+                return
+            field = value
+            invalidate()
+        }
+    var isLast = false
         set(value) {
             if (value == field)
                 return
@@ -35,6 +43,12 @@ class ProgressPoint(context: Context) : View(context) {
             R.color.cool_grey,
             null
         )
+
+        lastPaint.color = ResourcesCompat.getColor(
+            resources,
+            R.color.colorAccent,
+            null
+        )
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -42,7 +56,7 @@ class ProgressPoint(context: Context) : View(context) {
 
         canvas?.apply {
 
-            drawRoundRect(0.0F, 0.0F, width.toFloat(), height.toFloat(), 100F, 100F, if (isActive) activePaint else passivePaint)
+            drawRoundRect(0.0F, 0.0F, width.toFloat(), height.toFloat(), 100F, 100F, if (isActive) if (isLast) lastPaint else activePaint else passivePaint)
         }
     }
 }
@@ -62,6 +76,7 @@ class ProgressView(context: Context, attributeSet: AttributeSet) :
             field = newValue
             progressPoints.forEachIndexed { index, progressPoint ->
                 progressPoint.isActive = index < field
+                progressPoint.isLast = index == field - 1
             }
         }
 

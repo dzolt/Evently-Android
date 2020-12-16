@@ -11,4 +11,8 @@
         android:id="@+id/AddEventPlaceTimeFragment"
         android:name="com.apusart.evently_android.logged.create_event.EventPlaceTimeFragment"
         android:label="EventPlaceTimeFragment" />
+    <fragment
+        android:id="@+id/AddEventPickCategoryFragment"
+        android:name="com.apusart.evently_android.logged.create_event.EventPickCategoryFragment"
+        android:label="EventPickCategoryFragment" />
 </navigation>
