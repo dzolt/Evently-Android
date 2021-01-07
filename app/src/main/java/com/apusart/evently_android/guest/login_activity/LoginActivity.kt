@@ -55,6 +55,7 @@ class LoginActivity: AppCompatActivity() {
 
         val binding: LoginBinding = DataBindingUtil.setContentView(this, R.layout.login)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         login_email_login_button.setOnClickListener {
             Tools.hideKeyboard(this)
