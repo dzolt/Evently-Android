@@ -16,10 +16,11 @@ import kotlinx.coroutines.tasks.await
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import java.lang.Exception
 import javax.crypto.KeyGenerator
 import javax.inject.Inject
 
-class EventRemoteService: BaseRemoteDataSource() {
+class EventRemoteService : BaseRemoteDataSource() {
     private val storage = FirebaseStorage.getInstance()
     private val db = Firebase.firestore
 
@@ -53,7 +54,15 @@ class EventRemoteService: BaseRemoteDataSource() {
 
         file.putFile(uri).await()
 
-        return path
+        return file.downloadUrl.await().toString()
+    }
+
+    suspend fun getEvents(): Resource<List<Event>> {
+        return try {
+            return  Resource.success(db.collection("events").get().await().toObjects(Event::class.java))
+        } catch (e: Exception) {
+            Resource.error(e.message)
+        }
     }
 
 }

@@ -56,12 +56,19 @@ data class Event(
     val photoPath: String,
     val categories: List<String> = listOf(),
     val joinedUsers: List<UserShort> = listOf()
-)
+) {
+    constructor(): this(
+        "", "", "", "", "", UserShort(), ""
+    )
+}
 
 data class UserShort(
     val id: String,
-    val name: String
-)
+    val name: String,
+    val image: String = ""
+) {
+    constructor(): this("", "", "")
+}
 
 fun <T> handleResource(
     res: Resource<T>,

@@ -1,6 +1,8 @@
 package com.apusart.api.repositories
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.apusart.api.Event
 import com.apusart.api.Resource
 import com.apusart.api.UserShort
@@ -27,10 +29,16 @@ class EventRepository {
             return Resource.error("Invalid user, you need to re-log")
 
         val photoPath = eventRemoteService.addEventCoverPhoto(id, photoUri) ?: ""
-        val event = Event(id, name, description, date, place, creator, photoPath, categories)
+        val event = Event(id, name, description, date, place, creator, photoPath, categories, listOf(creator))
         eventRemoteService.createEvent(event)
 
         return Resource.success(event.creator.id)
     }
 
+    fun getEvents(): LiveData<Resource<List<Event>>> {
+        return liveData {
+            emit(Resource.pending())
+            emit(eventRemoteService.getEvents())
+        }
+    }
 }
