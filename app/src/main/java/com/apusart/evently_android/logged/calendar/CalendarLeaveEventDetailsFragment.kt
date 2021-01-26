@@ -12,6 +12,9 @@ import androidx.navigation.fragment.navArgs
 import com.apusart.api.handleResource
 import com.apusart.evently_android.R
 import com.apusart.evently_android.databinding.LeaveEventDetailsBinding
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.event_list_item.view.*
+import kotlinx.android.synthetic.main.leave_event_details.*
 
 class CalendarLeaveEventDetailsFragment : Fragment() {
     private val viewModel: CalendarLeaveEventViewModel by viewModels()
@@ -24,7 +27,6 @@ class CalendarLeaveEventDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.leave_event_details, container, false)
-        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -37,10 +39,18 @@ class CalendarLeaveEventDetailsFragment : Fragment() {
             handleResource(res,
                 onSuccess = {
                     viewModel.eventDetails = it!!
+                    binding.viewModel = viewModel
+                    Glide.with(this)
+                        .load(if(it.photoPath == "") R.drawable.add_picture else it.photoPath)
+                        .into(leave_event_cover_photo)
                 }, onError = { msg, _ ->
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
                 })
         })
+
+        leave_event_button.setOnClickListener {
+
+        }
     }
 
 }

@@ -13,4 +13,8 @@ class CalendarLeaveEventViewModel: ViewModel() {
     fun setEvent(id: String) {
         event = eventRepository.getEventById(id)
     }
+
+    fun leaveEvent() {
+
+    }
 }
