@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Log
 import com.apusart.api.Event
 import com.apusart.api.Resource
+import com.apusart.api.User
 import com.apusart.api.remote_data_source.BaseRemoteDataSource
 import com.apusart.api.remote_data_source.IEventlyService
 import com.apusart.tools.Defaults
@@ -64,5 +65,21 @@ class EventRemoteService : BaseRemoteDataSource() {
             Resource.error(e.message)
         }
     }
+
+    suspend fun getEventById(id: String): Resource<Event> {
+        return try {
+            return Resource.success(db.collection("events").whereEqualTo("id", id).get().await().toObjects(Event::class.java).first())
+        } catch (e: Exception) {
+            Resource.error(e.message)
+        }
+    }
+
+//    suspend fun getEventsForUser(user: User): Resource<List<Event>> {
+//        return try {
+//            return Resource.success(db.collection("events").document())
+//        } catch (e: Exception) {
+//            Resource.error(e.message)
+//        }
+//    }
 
 }

@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.apusart.evently_android.logged.calendar.CalendarFragment"
-        android:label="CalendarFragment" />
+        android:label="CalendarFragment" >
+        <action
+            android:id="@+id/action_calendarFragment_to_calendarLeaveEventDetailsFragment"
+            app:destination="@id/calendarLeaveEventDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/eventsFragment"
         android:name="com.apusart.evently_android.logged.events.EventsFragment"
@@ -28,4 +32,13 @@
         android:id="@+id/pickEventVisibility"
         android:name="com.apusart.evently_android.logged.create_event.PickEventVisibilityFragment"
         android:label="PickEventVisibility" />
+    <fragment
+        android:id="@+id/calendarLeaveEventDetailsFragment"
+        android:name="com.apusart.evently_android.logged.calendar.CalendarLeaveEventDetailsFragment"
+        android:label="CalendarLeaveEventDetailsFragment">
+        <argument
+            app:argType="string"
+            android:name="eventId"
+            />
+    </fragment>
 </navigation>
