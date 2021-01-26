@@ -13,6 +13,7 @@ import com.apusart.tools.Tools
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -95,6 +96,22 @@ class EventRemoteService : BaseRemoteDataSource() {
                 .await()
                 .toObjects(Event::class.java)
         )
+    }
+
+    suspend fun addCurrentUserToEvent(eventId: String): Resource<Unit> {
+        val currentUser = Firebase.auth.currentUser
+        val id = currentUser?.uid ?: "."
+        val name = currentUser?.displayName ?: currentUser?.email ?: "No information"
+        val user = UserShort(id, name)
+
+        FirebaseFirestore
+            .getInstance()
+            .collection("events")
+            .document(eventId)
+            .update("joinedUsers", FieldValue.arrayUnion(user))
+            .await()
+
+        return Resource.success(Unit)
     }
 
     suspend fun removeCurrentUserFromEvent(eventId: String) : Resource<FirebaseUser>{

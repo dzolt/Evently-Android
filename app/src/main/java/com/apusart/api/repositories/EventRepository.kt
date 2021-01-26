@@ -51,11 +51,8 @@ class EventRepository {
         return Resource.success(event.creator.id)
     }
 
-    fun getEvents(): LiveData<Resource<List<Event>>> {
-        return liveData {
-            emit(Resource.pending())
-            emit(eventRemoteService.getEvents())
-        }
+    suspend fun getEvents(): Resource<List<Event>> {
+        return eventRemoteService.getEvents()
     }
 
     suspend fun getEventById(id: String): Resource<Event> {
@@ -72,14 +69,8 @@ class EventRepository {
         return eventRemoteService.removeCurrentUserFromEvent(eventId)
     }
 
-    fun attend(event: Event): Boolean {
-        val currUser = Firebase.auth.currentUser
-        val docRef =
-            FirebaseFirestore.getInstance().collection("events")
-                .document(event.id.toString()) ?: return false
-
-        docRef.update("attendees", FieldValue.arrayUnion(currUser.hashCode()))
-        return true
+    suspend fun attend(event: Event): Resource<Unit> {
+        return eventRemoteService.addCurrentUserToEvent(event.id)
     }
 
 }
