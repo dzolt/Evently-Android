@@ -36,6 +36,7 @@ class CalendarLeaveEventDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val eventId = args.eventId
         viewModel.setEvent(eventId)
+
         viewModel.event.observe(viewLifecycleOwner, {res ->
             handleResource(res,
                 onSuccess = {
@@ -54,6 +55,7 @@ class CalendarLeaveEventDetailsFragment : Fragment() {
                 onSuccess = {
                     leave_event_button.transitionToStart()
                     findNavController().popBackStack()
+
                 },
                 onPending = {
                     leave_event_button.transitionToEnd()

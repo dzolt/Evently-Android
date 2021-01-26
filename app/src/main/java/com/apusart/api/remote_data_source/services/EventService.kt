@@ -10,7 +10,9 @@ import com.apusart.api.remote_data_source.BaseRemoteDataSource
 import com.apusart.api.remote_data_source.IEventlyService
 import com.apusart.tools.Defaults
 import com.apusart.tools.Tools
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -93,5 +95,18 @@ class EventRemoteService : BaseRemoteDataSource() {
                 .await()
                 .toObjects(Event::class.java)
         )
+    }
+
+    suspend fun removeCurrentUserFromEvent(eventId: String) : Resource<FirebaseUser>{
+        val currentUser = Firebase.auth.currentUser
+        val id = currentUser?.uid ?: "."
+        val name = currentUser?.displayName ?: currentUser?.email ?: "No information"
+        val user = UserShort(id, name)
+
+        db.collection("events")
+            .document(eventId)
+            .update("joinedUsers", FieldValue.arrayRemove(user)).await()
+
+        return Resource.success(currentUser!!)
     }
 }

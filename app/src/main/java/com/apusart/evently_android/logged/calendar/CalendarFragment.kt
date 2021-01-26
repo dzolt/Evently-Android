@@ -28,10 +28,6 @@ class CalendarFragment : Fragment(R.layout.calendar_fragment) {
             adapter = calendarAdapter
         }
         setUpObservers()
-        val dupa = Firebase.auth.currentUser?.displayName
-        val ciul = Firebase.auth.currentUser?.email
-        Log.d("UNAME", "DUPA" + Firebase.auth.currentUser?.displayName ?: Firebase.auth.currentUser?.email ?: "No information")
-        Log.d("UNAME", Firebase.auth.currentUser?.uid)
     }
 
     private fun setUpObservers() {
@@ -43,5 +39,10 @@ class CalendarFragment : Fragment(R.layout.calendar_fragment) {
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
                 })
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateEventList()
     }
 }

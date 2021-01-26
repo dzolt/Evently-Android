@@ -26,8 +26,8 @@ class CalendarLeaveEventViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 leavingEvent.value = Resource.pending()
-                delay(2000)
-                throw Exception()
+                eventRepository.removeCurrentUserFromEvent(eventDetails.id)
+                leavingEvent.value = Resource.success(Unit)
             } catch (e: Exception) {
                 leavingEvent.value = Resource.error(e.message)
             }

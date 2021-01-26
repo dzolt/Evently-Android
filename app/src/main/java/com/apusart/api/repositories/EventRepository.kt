@@ -8,6 +8,7 @@ import com.apusart.api.Resource
 import com.apusart.api.UserShort
 import com.apusart.api.local_data_source.db.services.EventLocalService
 import com.apusart.api.remote_data_source.services.EventRemoteService
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -62,11 +63,13 @@ class EventRepository {
 
     }
 
-    fun getEventsForCurrentUser(): LiveData<Resource<List<Event>>> {
-        return liveData {
-            emit(Resource.pending())
-            emit(eventRemoteService.getEventsForCurrentUser())
-        }
+    suspend fun getEventsForCurrentUser(): Resource<List<Event>> {
+        return eventRemoteService.getEventsForCurrentUser()
+
+    }
+
+    suspend fun removeCurrentUserFromEvent(eventId: String): Resource<FirebaseUser> {
+        return eventRemoteService.removeCurrentUserFromEvent(eventId)
     }
 
     fun attend(event: Event): Boolean {
