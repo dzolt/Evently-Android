@@ -5,5 +5,5 @@ import com.apusart.api.repositories.EventRepository
 
 class CalendarViewModel: ViewModel() {
     private val eventRepository = EventRepository()
-    val events = eventRepository.getEvents()
+    val events = eventRepository.getEventsForCurrentUser()
 }

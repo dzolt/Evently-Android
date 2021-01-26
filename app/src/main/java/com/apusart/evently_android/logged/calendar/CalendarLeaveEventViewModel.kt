@@ -1,20 +1,36 @@
 package com.apusart.evently_android.logged.calendar
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.apusart.api.Event
 import com.apusart.api.Resource
 import com.apusart.api.repositories.EventRepository
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class CalendarLeaveEventViewModel: ViewModel() {
+class CalendarLeaveEventViewModel : ViewModel() {
     private val eventRepository = EventRepository()
-    lateinit var event: LiveData<Resource<Event>>
+    val event = MutableLiveData<Resource<Event>>()
     var eventDetails = Event()
+    val leavingEvent = MutableLiveData<Resource<Unit>>()
+
     fun setEvent(id: String) {
-        event = eventRepository.getEventById(id)
+        viewModelScope.launch {
+            event.value = eventRepository.getEventById(id)
+        }
     }
 
     fun leaveEvent() {
-
+        viewModelScope.launch {
+            try {
+                leavingEvent.value = Resource.pending()
+                delay(2000)
+                throw Exception()
+            } catch (e: Exception) {
+                leavingEvent.value = Resource.error(e.message)
+            }
+        }
     }
 }

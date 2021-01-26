@@ -57,13 +57,17 @@ class EventRepository {
         }
     }
 
-    fun getEventById(id: String): LiveData<Resource<Event>> {
-        return liveData {
-            emit(Resource.pending())
-            emit(eventRemoteService.getEventById(id))
-        }
+    suspend fun getEventById(id: String): Resource<Event> {
+        return eventRemoteService.getEventById(id)
+
     }
 
+    fun getEventsForCurrentUser(): LiveData<Resource<List<Event>>> {
+        return liveData {
+            emit(Resource.pending())
+            emit(eventRemoteService.getEventsForCurrentUser())
+        }
+    }
 
     fun attend(event: Event): Boolean {
         val currUser = Firebase.auth.currentUser
@@ -71,15 +75,6 @@ class EventRepository {
             FirebaseFirestore.getInstance().collection("events")
                 .document(event.id.toString()) ?: return false
 
-//        val attendees: HashMap<Int, String> = HashMap<Int, String> ()
-//        docRef.get().addOnSuccessListener { document ->
-//            if (document != null){
-//                for (i in document.data("attendees")){
-//
-//                }
-//            }
-//        }
-//        attendees.put(currUser.hashCode(), decision)
         docRef.update("attendees", FieldValue.arrayUnion(currUser.hashCode()))
         return true
     }

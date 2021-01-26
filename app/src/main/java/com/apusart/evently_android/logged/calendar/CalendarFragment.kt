@@ -1,6 +1,7 @@
 package com.apusart.evently_android.logged.calendar
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.fragment.app.viewModels
 import com.apusart.api.handleResource
 import com.apusart.evently_android.R
 import com.apusart.evently_android.logged.events.EventsAdapter
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import kotlinx.android.synthetic.main.events_fragment.*
 
@@ -25,6 +28,10 @@ class CalendarFragment : Fragment(R.layout.calendar_fragment) {
             adapter = calendarAdapter
         }
         setUpObservers()
+        val dupa = Firebase.auth.currentUser?.displayName
+        val ciul = Firebase.auth.currentUser?.email
+        Log.d("UNAME", "DUPA" + Firebase.auth.currentUser?.displayName ?: Firebase.auth.currentUser?.email ?: "No information")
+        Log.d("UNAME", Firebase.auth.currentUser?.uid)
     }
 
     private fun setUpObservers() {

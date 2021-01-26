@@ -47,7 +47,7 @@ class EventViewHolder(container: View): RecyclerView.ViewHolder(container) {
             event_list_item_event_location.text = event.place
             event_list_item_event_participants.listOfParticipants = event.joinedUsers
             Glide.with(this)
-                .load(if(event.photoPath == "") R.drawable.add_picture else event.photoPath)
+                .load(if(event.photoPath == "") R.drawable.party_image_template1 else event.photoPath)
                 .into(event_list_item_image)
 
             setOnClickListener {
