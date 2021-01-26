@@ -3,11 +3,13 @@ package com.apusart.evently_android.logged.events
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.apusart.api.Event
 import com.apusart.evently_android.R
+import com.apusart.evently_android.logged.calendar.CalendarFragmentDirections
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.event_list_item.view.*
 
@@ -47,6 +49,12 @@ class EventViewHolder(container: View): RecyclerView.ViewHolder(container) {
             Glide.with(this)
                 .load(if(event.photoPath == "") R.drawable.add_picture else event.photoPath)
                 .into(event_list_item_image)
+
+            setOnClickListener {
+                findNavController()
+                    .navigate(
+                        EventsFragmentDirections.actionEventsFragmentToEventDetailsHomeFragment(event.id))
+            }
         }
     }
 }
