@@ -24,6 +24,10 @@ class EventsFragment : Fragment(R.layout.events_fragment) {
         setUpObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshEvents()
+    }
 
     private fun setUpObservers() {
         viewModel.events.observe(viewLifecycleOwner, { res ->

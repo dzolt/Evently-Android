@@ -1,4 +1,4 @@
-package com.apusart.evently_android.logged.events
+package com.apusart.evently_android.logged.calendar
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.apusart.api.Event
 import com.apusart.evently_android.R
-import com.apusart.evently_android.logged.calendar.CalendarFragmentDirections
+import com.apusart.evently_android.logged.events.EventsAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.event_list_item.view.*
 
-class EventsAdapter: ListAdapter<Event, EventViewHolder>(diffUtil) {
+class CalendarAdapter: ListAdapter<Event, EventViewHolder>(EventsAdapter.diffUtil)  {
 
     object diffUtil: DiffUtil.ItemCallback<Event>() {
         override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
@@ -52,8 +52,8 @@ class EventViewHolder(container: View): RecyclerView.ViewHolder(container) {
 
             setOnClickListener {
                 findNavController()
-                    .navigate(
-                        EventsFragmentDirections.actionEventsFragmentToEventDetailsHomeFragment(event.id))
+                    .navigate(CalendarFragmentDirections
+                        .actionCalendarFragmentToCalendarLeaveEventDetailsFragment(event.id))
             }
         }
     }
