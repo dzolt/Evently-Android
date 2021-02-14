@@ -5,10 +5,12 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.apusart.api.Resource
+import com.apusart.api.User
 import com.apusart.evently_android.MainActivity
 import com.apusart.evently_android.R
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseUser
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.CancellationException
@@ -34,6 +36,22 @@ object Tools {
             val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(v.windowToken, 0)
         }
+    }
+
+    fun toStringDate(day: Int, month: Int, year: Int, hour: Int, minutes: Int): String {
+        return "${zeroInFrontOf(day)}-${zeroInFrontOf(month)}-$year at ${zeroInFrontOf(hour)}:${zeroInFrontOf(minutes)}"
+    }
+
+    private fun zeroInFrontOf(int: Int): String {
+        return if(int >=10) "$int" else "0$int"
+    }
+
+
+    fun getRandomString(length: Int) : String {
+        val charset = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz0123456789"
+        return (1..length)
+            .map { charset.random() }
+            .joinToString("")
     }
 }
 

@@ -19,6 +19,7 @@ import com.apusart.appComponent
 import com.apusart.evently_android.R
 import com.apusart.evently_android.databinding.LoginBinding
 import com.apusart.evently_android.guest.register_activity.RegisterActivity
+import com.apusart.evently_android.guest.reset_password_activity.ResetPasswordActivity
 import com.apusart.evently_android.logged.main.MainLoggedActivity
 import com.apusart.tools.AppViewModelFactory
 import com.apusart.tools.Codes
@@ -55,6 +56,7 @@ class LoginActivity: AppCompatActivity() {
 
         val binding: LoginBinding = DataBindingUtil.setContentView(this, R.layout.login)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         login_email_login_button.setOnClickListener {
             Tools.hideKeyboard(this)
@@ -105,6 +107,11 @@ class LoginActivity: AppCompatActivity() {
 
         login_email_facebook_button_container.setOnClickListener {
             login_email_facebook_button.performClick()
+        }
+
+        login_forgot_password.setOnClickListener {
+            startActivity(Intent(this, ResetPasswordActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
         }
     }
 

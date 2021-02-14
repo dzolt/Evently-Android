@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.apusart.api.UserShort
 import com.apusart.evently_android.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.participants_number.view.*
@@ -14,7 +15,7 @@ class TestUser {}
 
 class Participants(context: Context, attributeSet: AttributeSet): ConstraintLayout(context, attributeSet) {
     private val MAX_ITEMS = 3
-    var listOfParticipants: List<TestUser>? = listOf()
+    var listOfParticipants: List<UserShort>? = listOf()
         set(value) {
             if(value == null || value.isEmpty())
                 field = value
@@ -30,7 +31,7 @@ class Participants(context: Context, attributeSet: AttributeSet): ConstraintLayo
                     field = value
                 else
                     Glide.with(this)
-                        .load(value)
+                        .load(if(value == "") R.drawable.user_no_cover_photo else value)
                         .circleCrop()
                         .into(this)
             }
@@ -40,9 +41,11 @@ class Participants(context: Context, attributeSet: AttributeSet): ConstraintLayo
         }
     }
 
-    private fun setupView(list: List<TestUser>) {
+    private fun setupView(list: List<UserShort>) {
         val listOfImages = list.subList(0, if(list.size > MAX_ITEMS) MAX_ITEMS else list.size).map {
-            ParticipantImage(context)
+            val x = ParticipantImage(context)
+            x.image = ""
+            x
         }
 
         listOfImages.forEachIndexed { index, participantImage ->
@@ -50,7 +53,7 @@ class Participants(context: Context, attributeSet: AttributeSet): ConstraintLayo
                 resources.getDimension(R.dimen._32dp).toInt(),
                 resources.getDimension(R.dimen._32dp).toInt())
 
-            participantImage.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
+//            participantImage.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
 
             if (index == 0)
                 params.topToTop = 0

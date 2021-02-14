@@ -28,4 +28,22 @@
     <string name="abort">Cancel</string>
     <string name="wanna_sign_out">Do you really want to sign out?</string>
     <string name="change_profile_picture">Change profile picture</string>
+    <string name="_public">Public</string>
+    <string name="_private">Private</string>
+    <string name="_friends">Friends</string>
+    <string name="friends_visibility_about">Visible only for friends.</string>
+    <string name="private_visibility_about">Visible only for invited people.</string>
+    <string name="public_visibility_about">Visible for everyone.</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="event_name">Event name</string>
+    <string name="place">Place</string>
+    <string name="find_category">Find Category</string>
+
+    <string name="add_photo">Add photo</string>
+    <string name="cover_photo">Cover photo</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="remembered_credentials">Remembered Credentials?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
